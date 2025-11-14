@@ -9,13 +9,6 @@ on:
   pull_request:
 
 jobs:
-  context_info:
-    name: Context info
-    runs-on: ubuntu-latest
-    steps:
-    - name: Check Context
-      run: |
-        echo " ${{ toJSON(github)  }} "
 
   pr_info:
     name: Pr info
@@ -26,7 +19,8 @@ jobs:
     steps:
       - name: "pr_event"
         run: |
-           echo "pr_event: $PR_Num ${{ toJSON(github.event) }}"
+           echo "pr_event: $PR_Num "
+           echo "${{ toJSON(github.event) }}"
            
   main_push:
       name: Push Info
