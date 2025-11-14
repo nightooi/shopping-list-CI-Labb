@@ -22,8 +22,7 @@ jobs:
     if: ${{ github.event.pull_request }}
     runs-on: ubuntu-latest
     env:
-      PR_Num: ${{github.event.pull_request.number }}
-      PR_Actor: ${{ github.event.pull_request}}
+      PR_Num: ${{ toJSON(github.event.pull_request) }}
     steps:
       - name: "pr_event"
         run: |
