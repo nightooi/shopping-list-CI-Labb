@@ -23,11 +23,11 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PR_Num: ${{github.event.number }}
-      PR_Actor: ${{ github.event.pull_request}}
+      PR_Actor: ${{ github.event }}
     steps:
       - name: "pr_event"
         run: |
-           echo "${{ toJSON(github.event.pull_request) }}"
+           echo "${{ toJSON(github.event) }}"
            
   main_push:
       name: Push Info
@@ -40,7 +40,7 @@ jobs:
         - name: Push event info
           if: ${{ github.event_name == 'pull_request' }}
           run: |
-            echo "number: ${{ github.event.nummer }}, pull_request: ${{ toJSON(github) }}"
+            echo "number: ${{ github.event.number }}, pull_request: ${{ toJSON(github.event) }}"
 
         - name: Dispatch info
           if: ${{ github.event_name == 'workflow_dispatch' }}
