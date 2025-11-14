@@ -15,7 +15,7 @@ jobs:
     steps:
     - name: Check Context
       run: |
-        echo " {{ toJSON(github) }} "
+        echo " ${{ toJSON(github) }} "
 
   pr_info:
     name: Pr info
