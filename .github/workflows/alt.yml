@@ -27,7 +27,7 @@ jobs:
     steps:
       - name: "pr_event"
         run: |
-           echo "${{"
+           echo "${{ toJSON(github.event.pull_request) }}"
            
   main_push:
       name: Push Info
