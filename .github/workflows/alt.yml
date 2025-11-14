@@ -15,19 +15,19 @@ jobs:
     steps:
     - name: Check Context
       run: |
-        echo " ${{ toJSON(github) }} "
+        echo " ${{ toJSON(github)  }} "
 
   pr_info:
     name: Pr info
     if: ${{ github.event.pull_request }}
     runs-on: ubuntu-latest
     env:
-      PR_Num: ${{github.event.pull_request.number }}
+      PR_Num: ${{github.event.number }}
       PR_Actor: ${{ github.event.pull_request}}
     steps:
       - name: "pr_event"
         run: |
-           echo "${{"
+           echo "${{ toJSON(github.event.pull_request) }}"
            
   main_push:
       name: Push Info
@@ -40,12 +40,12 @@ jobs:
         - name: Push event info
           if: ${{ github.event_name == 'pull_request' }}
           run: |
-            echo "pr"
+            echo "number: ${{ github.event.nummer }}, pull_request: ${{ toJSON(github) }}"
 
         - name: Dispatch info
           if: ${{ github.event_name == 'workflow_dispatch' }}
           run: |
-            echo "dispatch"
+            echo "${{}}"
       
   build:
     runs-on: ${{ matrix.os }}
