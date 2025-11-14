@@ -34,7 +34,7 @@ jobs:
       - name: "Execute Test"
         if: success()
         run: |
-          dotnet --restore
+          dotnet restore
           dotnet test --no-build
 
       - name: "Build Failed"
