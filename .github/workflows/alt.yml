@@ -29,11 +29,20 @@ jobs:
   main_push:
       name: Push Info
       runs-on: ubuntu-latest
-      if: ${{ github.event.branches.main }}
       steps:
-        - name: "other_event"
+        - name: Push event info
+          if: ${{ github.event_name == 'push' }}
           run: |
-            echo "other"
+            echo "push"
+        - name: Push event info
+          if: ${{ github.event_name == 'pull_request' }}
+          run: |
+            echo "pr"
+
+        - name: Dispatch info
+          if: ${{ github.event_name == 'workflow_dispatch' }}
+          run: |
+            echo "dispatch"
       
   build:
     runs-on: ${{ matrix.os }}
